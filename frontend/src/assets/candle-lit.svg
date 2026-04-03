@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 100">
+  <!-- Flame glow -->
+  <ellipse cx="30" cy="20" rx="15" ry="20" fill="url(#glowGradient)" opacity="0.6"/>
+
+  <!-- Flame -->
+  <path d="M30 5 Q40 15 35 25 Q38 30 30 35 Q22 30 25 25 Q20 15 30 5" fill="url(#flameGradient)">
+    <animate attributeName="d"
+      values="M30 5 Q40 15 35 25 Q38 30 30 35 Q22 30 25 25 Q20 15 30 5;
+              M30 3 Q42 14 36 24 Q40 32 30 37 Q20 32 24 24 Q18 14 30 3;
+              M30 5 Q40 15 35 25 Q38 30 30 35 Q22 30 25 25 Q20 15 30 5"
+      dur="0.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Inner flame -->
+  <path d="M30 15 Q35 20 32 26 Q34 30 30 32 Q26 30 28 26 Q25 20 30 15" fill="#fff8dc">
+    <animate attributeName="d"
+      values="M30 15 Q35 20 32 26 Q34 30 30 32 Q26 30 28 26 Q25 20 30 15;
+              M30 13 Q36 19 33 25 Q36 31 30 34 Q24 31 27 25 Q24 19 30 13;
+              M30 15 Q35 20 32 26 Q34 30 30 32 Q26 30 28 26 Q25 20 30 15"
+      dur="0.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Wick -->
+  <rect x="28" y="32" width="4" height="8" fill="#333"/>
+
+  <!-- Candle body -->
+  <rect x="18" y="40" width="24" height="55" rx="2" fill="url(#candleGradient)"/>
+
+  <!-- Candle highlight -->
+  <rect x="20" y="42" width="6" height="50" rx="1" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Dripping wax -->
+  <ellipse cx="22" cy="60" rx="3" ry="5" fill="#f5e6d3"/>
+  <ellipse cx="38" cy="70" rx="2" ry="4" fill="#f5e6d3"/>
+
+  <!-- Base -->
+  <ellipse cx="30" cy="95" rx="18" ry="4" fill="#8b4513"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6600"/>
+      <stop offset="50%" style="stop-color:#ffaa00"/>
+      <stop offset="100%" style="stop-color:#ffee00"/>
+    </linearGradient>
+    <radialGradient id="glowGradient">
+      <stop offset="0%" style="stop-color:#ff9900;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ff9900;stop-opacity:0"/>
+    </radialGradient>
+    <linearGradient id="candleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fff8dc"/>
+      <stop offset="50%" style="stop-color:#fffacd"/>
+      <stop offset="100%" style="stop-color:#f5e6d3"/>
+    </linearGradient>
+  </defs>
+</svg>

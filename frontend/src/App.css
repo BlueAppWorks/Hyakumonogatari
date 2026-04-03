@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app-wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background layer - receives filters */
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.background-layer.dark-theme {
+  background:
+    linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0a2e 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="%23ffffff20"/><circle cx="80" cy="20" r="1.5" fill="%23ffffff15"/><circle cx="50" cy="70" r="1" fill="%23ffffff10"/><circle cx="10" cy="80" r="1.5" fill="%23ffffff15"/><circle cx="90" cy="60" r="1" fill="%23ffffff10"/></svg>');
+  background-attachment: fixed;
+}
+
+.background-layer.bright-theme {
+  background:
+    linear-gradient(135deg, #ff9500 0%, #ffb347 30%, #ffd700 60%, #fff8dc 100%);
+  background-attachment: fixed;
+}
+
+/* Halloween decorations for dark theme */
+.background-layer.dark-theme::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 149, 0, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(255, 107, 53, 0.1) 0%, transparent 35%),
+    radial-gradient(circle at 30% 70%, rgba(255, 0, 100, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 70% 30%, rgba(100, 0, 255, 0.1) 0%, transparent 20%);
+  pointer-events: none;
+}
+
+/* Bright theme decorations */
+.background-layer.bright-theme::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 30%),
+    radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.3) 0%, transparent 25%),
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.5) 0%, transparent 20%);
+  pointer-events: none;
+}
+
+/* Content layer - stays on top */
+.content-layer {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Progress bar */
+.progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease, background 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 149, 0, 0.5);
+}
+
+/* Vignette effect that intensifies as darkness grows */
+.background-layer.dark-theme::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+}
