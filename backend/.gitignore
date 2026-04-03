@@ -1,0 +1,8 @@
+.env
+__pycache__/
+*.pyc
+ffmpeg-master-latest-win64-gpl/
+ffmpeg.zip
+*.egg-info/
+.venv/
+venv/

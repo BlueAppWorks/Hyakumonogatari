@@ -40,6 +40,7 @@ export interface Talk {
   isCompleted: boolean
   startedAt: Date | null
   completedAt: Date | null
+  hasAudio?: boolean
 }
 
 // Application state

@@ -12,8 +12,7 @@ import {
   Group,
   Text,
 } from '@mantine/core'
-import type { EventConfig } from '../types'
-import { generateEventId, saveEvent } from '../storage'
+import { createEvent } from '../api'
 
 export function EventSetup() {
   const navigate = useNavigate()
@@ -21,32 +20,29 @@ export function EventSetup() {
   const [candleCount, setCandleCount] = useState<number>(100)
   const [timeLimit, setTimeLimit] = useState<number>(2)
   const [mode, setMode] = useState<'dark' | 'bright'>('dark')
+  const [loading, setLoading] = useState(false)
 
-  const handleStart = () => {
-    const eventId = generateEventId()
-    const config: EventConfig = {
-      id: eventId,
-      name: name || '百物語',
-      candleCount: candleCount || 100,
-      timeLimitSeconds: (timeLimit || 2) * 60,
-      mode,
-      createdAt: new Date(),
-      iconEmoji: '🎃',
-      iconImageUrl: null,
-      backgroundImageUrl: null,
-      titleColor: '#ff9500',
-      candleStyle: 'simple',
+  const handleStart = async () => {
+    try {
+      setLoading(true)
+      const event = await createEvent({
+        name: name || '百物語',
+        candle_count: candleCount || 100,
+        time_limit_seconds: (timeLimit || 2) * 60,
+        mode,
+        icon_emoji: '🎃',
+        icon_image_url: null,
+        background_image_url: null,
+        title_color: '#ff9500',
+        candle_style: 'simple',
+      })
+      navigate(`/event/${event.id}`)
+    } catch (err) {
+      console.error(err)
+      alert('イベントの作成に失敗しました')
+    } finally {
+      setLoading(false)
     }
-
-    // Save to localStorage
-    saveEvent({
-      event: config,
-      participants: [],
-      talks: [],
-    })
-
-    // Navigate to event page
-    navigate(`/event/${eventId}`)
   }
 
   return (
@@ -154,6 +150,7 @@ export function EventSetup() {
             color="orange"
             fullWidth
             onClick={handleStart}
+            loading={loading}
             styles={{
               root: { marginTop: '16px', height: '60px', fontSize: '20px' },
             }}

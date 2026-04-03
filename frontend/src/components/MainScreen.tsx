@@ -14,8 +14,8 @@ interface MainScreenProps {
   participants: Participant[]
   talks: Talk[]
   onUpdateEvent: (event: EventConfig) => void
-  onAddParticipant: (participant: Participant) => void
-  onUpdateTalk: (talk: Talk) => void
+  onAddParticipant: (participant: Participant) => Promise<Participant | null>
+  onUpdateTalk: (talk: Talk, audioBlob?: Blob) => void
   onReset: () => void
 }
 
@@ -100,18 +100,26 @@ export function MainScreen({
     setShowTalkScreen(true)
   }, [])
 
-  const handleAddParticipant = useCallback((participant: Participant) => {
-    onAddParticipant(participant)
-    setSelectedSpeaker(participant)
-    setShowSpeakerSelect(false)
-    setShowTalkScreen(true)
+  const handleAddParticipant = useCallback(async (participant: Participant) => {
+    const createdParticipant = await onAddParticipant(participant)
+    if (createdParticipant) {
+      setSelectedSpeaker(createdParticipant)
+      setShowSpeakerSelect(false)
+      setShowTalkScreen(true)
+    }
   }, [onAddParticipant])
 
-  const handleTalkComplete = useCallback((talk: Talk) => {
-    onUpdateTalk(talk)
+  const handleTalkComplete = useCallback(async (talk: Talk, audioBlob?: Blob) => {
     setShowTalkScreen(false)
     setActiveSlot(null)
     setSelectedSpeaker(null)
+
+    try {
+      await onUpdateTalk(talk, audioBlob)
+      console.log(`✅ スロット${talk.slotNumber}の保存完了`)
+    } catch (err) {
+      console.error(`❌ スロット${talk.slotNumber}の保存失敗:`, err)
+    }
 
     // Check if all candles are done
     const newCompletedCount = completedSlots.size + 1
@@ -280,6 +288,7 @@ export function MainScreen({
       <TalkDetail
         isOpen={showTalkDetail}
         slotNumber={activeSlot || 0}
+        eventId={event.id}
         talk={activeSlot ? talksMap.get(activeSlot) || null : null}
         speaker={selectedSpeaker}
         onClose={() => {

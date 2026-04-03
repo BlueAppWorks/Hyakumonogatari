@@ -18,7 +18,7 @@ interface SpeakerSelectProps {
   slotNumber: number
   participants: Participant[]
   onSelect: (participant: Participant) => void
-  onAddParticipant: (participant: Participant) => void
+  onAddParticipant: (participant: Participant) => Promise<void> | void
   onClose: () => void
 }
 
@@ -34,14 +34,14 @@ export function SpeakerSelect({
   const [newName, setNewName] = useState('')
   const [selectedIcon, setSelectedIcon] = useState(0)
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     if (!newName.trim()) return
     const newParticipant: Participant = {
       id: crypto.randomUUID(),
       nickname: newName.trim(),
       iconIndex: selectedIcon,
     }
-    onAddParticipant(newParticipant)
+    await onAddParticipant(newParticipant)
     setNewName('')
     setSelectedIcon(0)
     setShowAddForm(false)

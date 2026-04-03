@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Paper, Title, Text, Button, Group, Progress } from '@mantine/core'
 import type { Participant, Talk } from '../types'
@@ -10,7 +10,7 @@ interface TalkScreenProps {
   speaker: Participant | null
   timeLimitSeconds: number
   existingTalk: Talk | null
-  onComplete: (talk: Talk) => void
+  onComplete: (talk: Talk, audioBlob?: Blob) => void
   onClose: () => void
 }
 
@@ -26,6 +26,11 @@ export function TalkScreen({
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [isRunning, setIsRunning] = useState(false)
   const [isTimeUp, setIsTimeUp] = useState(false)
+  const [isRecording, setIsRecording] = useState(false)
+  const [recordingError, setRecordingError] = useState<string | null>(null)
+
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null)
+  const audioChunksRef = useRef<Blob[]>([])
 
   // Timer logic
   useEffect(() => {
@@ -44,14 +49,72 @@ export function TalkScreen({
     return () => clearInterval(interval)
   }, [isOpen, isRunning, timeLimitSeconds, isTimeUp])
 
-  // Auto-start timer when screen opens
+  // Start recording
+  const startRecording = useCallback(async () => {
+    try {
+      setRecordingError(null)
+      audioChunksRef.current = []
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/mp4',
+      })
+
+      mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          audioChunksRef.current.push(event.data)
+        }
+      }
+
+      mediaRecorder.start(1000) // Collect data every second
+      mediaRecorderRef.current = mediaRecorder
+      setIsRecording(true)
+    } catch (err) {
+      console.error('Recording error:', err)
+      setRecordingError('マイクへのアクセスが拒否されました')
+    }
+  }, [])
+
+  // Stop recording and return audio blob
+  const stopRecording = useCallback((): Promise<Blob | undefined> => {
+    return new Promise((resolve) => {
+      const mediaRecorder = mediaRecorderRef.current
+      if (!mediaRecorder || mediaRecorder.state === 'inactive') {
+        resolve(undefined)
+        return
+      }
+
+      mediaRecorder.onstop = () => {
+        const audioBlob = new Blob(audioChunksRef.current, {
+          type: mediaRecorder.mimeType,
+        })
+        // Stop all tracks
+        mediaRecorder.stream.getTracks().forEach((track) => track.stop())
+        setIsRecording(false)
+        resolve(audioBlob)
+      }
+
+      mediaRecorder.stop()
+    })
+  }, [])
+
+  // Auto-start timer and recording when screen opens
   useEffect(() => {
     if (isOpen && !existingTalk?.isCompleted) {
       setElapsedSeconds(0)
       setIsRunning(true)
       setIsTimeUp(false)
+      startRecording()
     }
-  }, [isOpen, existingTalk])
+
+    return () => {
+      // Cleanup on close
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+        mediaRecorderRef.current.stream.getTracks().forEach((track) => track.stop())
+        mediaRecorderRef.current.stop()
+      }
+    }
+  }, [isOpen, existingTalk, startRecording])
 
   const formatTime = useCallback((seconds: number) => {
     const mins = Math.floor(seconds / 60)
@@ -62,17 +125,20 @@ export function TalkScreen({
   const remainingSeconds = Math.max(0, timeLimitSeconds - elapsedSeconds)
   const progress = Math.min(100, (elapsedSeconds / timeLimitSeconds) * 100)
 
-  const handleComplete = () => {
+  const handleComplete = async () => {
     setIsRunning(false)
+    const audioBlob = await stopRecording()
+
     const talk: Talk = {
       slotNumber,
       speakerId: speaker?.id || null,
-      transcript: '', // Will be filled by recording later
+      transcript: '', // Will be filled by Whisper later
       isCompleted: true,
       startedAt: existingTalk?.startedAt || new Date(),
       completedAt: new Date(),
+      hasAudio: !!audioBlob,
     }
-    onComplete(talk)
+    onComplete(talk, audioBlob)
   }
 
   return (
@@ -188,22 +254,35 @@ export function TalkScreen({
                 )}
               </AnimatePresence>
 
-              {/* Recording placeholder */}
+              {/* Recording indicator */}
               <Paper
                 p="md"
                 radius="md"
                 mb="xl"
                 style={{
-                  background: 'rgba(255, 0, 0, 0.1)',
-                  border: '2px solid rgba(255, 0, 0, 0.3)',
+                  background: isRecording
+                    ? 'rgba(255, 0, 0, 0.15)'
+                    : recordingError
+                    ? 'rgba(255, 165, 0, 0.15)'
+                    : 'rgba(100, 100, 100, 0.15)',
+                  border: `2px solid ${isRecording ? 'rgba(255, 0, 0, 0.5)' : 'rgba(100, 100, 100, 0.3)'}`,
                   textAlign: 'center',
                 }}
               >
-                <Text size="24px" mb="xs">
-                  🔴
-                </Text>
-                <Text c="dimmed" size="sm">
-                  録音機能は Phase 4 で実装予定
+                <motion.div
+                  animate={isRecording ? { opacity: [1, 0.5, 1] } : {}}
+                  transition={{ repeat: Infinity, duration: 1 }}
+                >
+                  <Text size="24px" mb="xs">
+                    {isRecording ? '🔴' : recordingError ? '⚠️' : '🎤'}
+                  </Text>
+                </motion.div>
+                <Text c={recordingError ? 'orange' : 'dimmed'} size="sm">
+                  {isRecording
+                    ? '録音中...'
+                    : recordingError
+                    ? recordingError
+                    : '録音待機中'}
                 </Text>
               </Paper>
 

@@ -9,28 +9,54 @@ import {
   Group,
   SimpleGrid,
   ActionIcon,
+  Loader,
 } from '@mantine/core'
-import { getAllEvents, deleteEvent, type StoredEvent } from '../storage'
 import { useState, useEffect } from 'react'
+import { getEvents, deleteEvent as deleteEventApi, type EventConfig } from '../api'
+
+interface EventWithTalks extends EventConfig {
+  talks?: { is_completed: boolean }[]
+}
 
 export function EventList() {
   const navigate = useNavigate()
-  const [events, setEvents] = useState<StoredEvent[]>([])
+  const [events, setEvents] = useState<EventWithTalks[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    setEvents(getAllEvents())
-  }, [])
-
-  const handleDelete = (eventId: string, e: React.MouseEvent) => {
-    e.stopPropagation()
-    if (confirm('このイベントを削除しますか？')) {
-      deleteEvent(eventId)
-      setEvents(getAllEvents())
+  const fetchEvents = async () => {
+    try {
+      setLoading(true)
+      const data = await getEvents()
+      setEvents(data)
+      setError(null)
+    } catch (err) {
+      setError('イベントの取得に失敗しました')
+      console.error(err)
+    } finally {
+      setLoading(false)
     }
   }
 
-  const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('ja-JP', {
+  useEffect(() => {
+    fetchEvents()
+  }, [])
+
+  const handleDelete = async (eventId: string, e: React.MouseEvent) => {
+    e.stopPropagation()
+    if (confirm('このイベントを削除しますか？')) {
+      try {
+        await deleteEventApi(eventId)
+        fetchEvents()
+      } catch (err) {
+        console.error(err)
+        alert('削除に失敗しました')
+      }
+    }
+  }
+
+  const formatDate = (dateStr: string) => {
+    return new Date(dateStr).toLocaleDateString('ja-JP', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -79,19 +105,25 @@ export function EventList() {
             ＋ 新しいイベントを作成
           </Button>
 
-          {events.length > 0 && (
+          {loading ? (
+            <Group justify="center" py="xl">
+              <Loader color="orange" />
+            </Group>
+          ) : error ? (
+            <Text ta="center" c="red">{error}</Text>
+          ) : events.length > 0 && (
             <>
               <Text c="dimmed" size="sm" mt="md">
                 既存のイベント
               </Text>
               <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-                {events.map((stored) => {
-                  const completedCount = stored.talks.filter((t) => t.isCompleted).length
-                  const progress = Math.round((completedCount / stored.event.candleCount) * 100)
+                {events.map((event) => {
+                  const completedCount = event.talks?.filter((t) => t.is_completed).length || 0
+                  const progress = Math.round((completedCount / event.candle_count) * 100)
 
                   return (
                     <motion.div
-                      key={stored.event.id}
+                      key={event.id}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -105,7 +137,7 @@ export function EventList() {
                           transition: 'border-color 0.2s',
                           position: 'relative',
                         }}
-                        onClick={() => navigate(`/event/${stored.event.id}`)}
+                        onClick={() => navigate(`/event/${event.id}`)}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.borderColor = '#ff9500'
                         }}
@@ -115,26 +147,26 @@ export function EventList() {
                       >
                         <Group justify="space-between" mb="xs">
                           <Text fw={700} c="white" size="lg">
-                            {stored.event.name}
+                            {event.name}
                           </Text>
                           <ActionIcon
                             variant="subtle"
                             color="red"
                             size="sm"
-                            onClick={(e) => handleDelete(stored.event.id, e)}
+                            onClick={(e) => handleDelete(event.id, e)}
                           >
                             ✕
                           </ActionIcon>
                         </Group>
                         <Text size="sm" c="dimmed" mb="xs">
-                          {formatDate(stored.event.createdAt)}
+                          {formatDate(event.created_at)}
                         </Text>
                         <Group gap="xs">
                           <Text size="sm" c="orange">
-                            {stored.event.mode === 'dark' ? '🌙' : '☀️'}
+                            {event.mode === 'dark' ? '🌙' : '☀️'}
                           </Text>
                           <Text size="sm" c="dimmed">
-                            {completedCount}/{stored.event.candleCount}本
+                            {completedCount}/{event.candle_count}本
                           </Text>
                           <Text size="sm" c={progress === 100 ? 'green' : 'dimmed'}>
                             ({progress}%)

@@ -1,12 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Paper, Title, Text, Button, Group, Textarea } from '@mantine/core'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import type { Participant, Talk } from '../types'
 import { AVATAR_ICONS } from '../types'
+import { getAudioUrl } from '../api'
 
 interface TalkDetailProps {
   isOpen: boolean
   slotNumber: number
+  eventId: string
   talk: Talk | null
   speaker: Participant | null
   onClose: () => void
@@ -16,6 +18,7 @@ interface TalkDetailProps {
 export function TalkDetail({
   isOpen,
   slotNumber,
+  eventId,
   talk,
   speaker,
   onClose,
@@ -23,6 +26,22 @@ export function TalkDetail({
 }: TalkDetailProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [transcript, setTranscript] = useState(talk?.transcript || '')
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+
+  // Reset audio element when slot changes or modal closes
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.pause()
+      audioRef.current = null
+    }
+    setIsPlaying(false)
+  }, [slotNumber, isOpen])
+
+  // Update transcript state when talk changes
+  useEffect(() => {
+    setTranscript(talk?.transcript || '')
+  }, [talk?.transcript])
 
   const handleSave = () => {
     onUpdateTranscript(slotNumber, transcript)
@@ -119,9 +138,48 @@ export function TalkDetail({
                 </Group>
               )}
 
+              {/* Audio player */}
+              {talk?.hasAudio && (
+                <Paper
+                  p="md"
+                  radius="md"
+                  mb="lg"
+                  style={{
+                    background: 'rgba(0, 100, 0, 0.1)',
+                    border: '1px solid rgba(0, 200, 0, 0.3)',
+                  }}
+                >
+                  <Group justify="center" gap="md">
+                    <Button
+                      variant={isPlaying ? 'filled' : 'light'}
+                      color={isPlaying ? 'red' : 'green'}
+                      size="lg"
+                      leftSection={<span>{isPlaying ? '⏹' : '▶️'}</span>}
+                      onClick={() => {
+                        if (!audioRef.current) {
+                          audioRef.current = new Audio(getAudioUrl(eventId, slotNumber))
+                          audioRef.current.onended = () => setIsPlaying(false)
+                        }
+
+                        if (isPlaying) {
+                          audioRef.current.pause()
+                          audioRef.current.currentTime = 0
+                          setIsPlaying(false)
+                        } else {
+                          audioRef.current.play()
+                          setIsPlaying(true)
+                        }
+                      }}
+                    >
+                      {isPlaying ? '停止' : '録音を再生'}
+                    </Button>
+                  </Group>
+                </Paper>
+              )}
+
               {/* Transcript */}
               <Text size="sm" c="dimmed" mb="xs">
-                文字起こし（Phase 4で録音対応予定）
+                文字起こし
               </Text>
               {isEditing ? (
                 <>
