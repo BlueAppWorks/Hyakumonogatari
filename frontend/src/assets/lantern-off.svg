@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 130">
+  <!-- Top hook with ornate scroll -->
+  <path d="M40 2 Q40 -2 44 -2 Q50 -2 50 4 Q50 10 44 10 L44 14" stroke="url(#antiqueGoldOff)" stroke-width="2.5" fill="none"/>
+  <circle cx="40" cy="2" r="2" fill="url(#antiqueGoldLightOff)"/>
+
+  <!-- Crown top with acanthus leaf style -->
+  <path d="M30 16 Q28 12 32 10 Q36 8 40 6 Q44 8 48 10 Q52 12 50 16" fill="url(#antiqueGoldOff)"/>
+  <path d="M32 14 Q36 10 40 8 Q44 10 48 14" fill="url(#antiqueGoldLightOff)" opacity="0.5"/>
+
+  <!-- Decorative fleur-de-lis top -->
+  <path d="M37 10 Q40 4 43 10 M40 6 L40 14" stroke="url(#antiqueGoldLightOff)" stroke-width="1.5" fill="none"/>
+
+  <!-- Upper decorative collar with scalloped edge -->
+  <ellipse cx="40" cy="18" rx="14" ry="4" fill="url(#antiqueGoldOff)"/>
+  <path d="M26 20 Q28 24 32 22 Q36 24 40 22 Q44 24 48 22 Q52 24 54 20" fill="url(#antiqueGoldDarkOff)"/>
+
+  <!-- Ornate scroll arms extending from top -->
+  <path d="M26 22 Q18 26 16 34 Q14 38 18 40" stroke="url(#antiqueGoldOff)" stroke-width="2" fill="none"/>
+  <path d="M54 22 Q62 26 64 34 Q66 38 62 40" stroke="url(#antiqueGoldOff)" stroke-width="2" fill="none"/>
+
+  <!-- Scroll curls -->
+  <circle cx="17" cy="40" r="3" fill="none" stroke="url(#antiqueGoldOff)" stroke-width="1.5"/>
+  <circle cx="63" cy="40" r="3" fill="none" stroke="url(#antiqueGoldOff)" stroke-width="1.5"/>
+
+  <!-- Crystal drops from scrolls (dimmer) -->
+  <path d="M17 44 L17 50 L15 54 L17 58 L19 54 L17 50" fill="url(#crystalGradientOff)" opacity="0.5"/>
+  <path d="M63 44 L63 50 L61 54 L63 58 L65 54 L63 50" fill="url(#crystalGradientOff)" opacity="0.5"/>
+  <ellipse cx="17" cy="59" rx="2" ry="3" fill="url(#crystalGradientOff)" opacity="0.6"/>
+  <ellipse cx="63" cy="59" rx="2" ry="3" fill="url(#crystalGradientOff)" opacity="0.6"/>
+
+  <!-- Main glass body frame (dark/cold) -->
+  <rect x="24" y="24" width="32" height="50" rx="3" fill="url(#coldGlass)" opacity="0.9"/>
+
+  <!-- Acanthus leaf pattern on frame sides -->
+  <path d="M24 30 Q20 35 22 42 Q20 48 24 54" stroke="url(#antiqueGoldOff)" stroke-width="2.5" fill="none"/>
+  <path d="M56 30 Q60 35 58 42 Q60 48 56 54" stroke="url(#antiqueGoldOff)" stroke-width="2.5" fill="none"/>
+
+  <!-- Leaf details -->
+  <path d="M22 36 Q24 38 22 40" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+  <path d="M22 46 Q24 48 22 50" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+  <path d="M58 36 Q56 38 58 40" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+  <path d="M58 46 Q56 48 58 50" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+
+  <!-- Glass panel highlights (dimmer) -->
+  <rect x="26" y="28" width="6" height="42" rx="1" fill="rgba(255,255,255,0.08)"/>
+
+  <!-- Decorative middle band with rococo style -->
+  <rect x="22" y="46" width="36" height="5" rx="1" fill="url(#antiqueGoldDarkOff)"/>
+  <path d="M26 48 Q30 46 34 48 Q38 50 42 48 Q46 46 50 48 Q54 50 54 48" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+
+  <!-- Smoke wisps -->
+  <g opacity="0.35">
+    <ellipse cx="40" cy="45" rx="5" ry="7" fill="#888">
+      <animate attributeName="cy" values="45;35;25" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.35;0.15;0" dur="2.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="36" cy="50" rx="4" ry="6" fill="#888">
+      <animate attributeName="cy" values="50;40;30" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.12;0" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="44" cy="48" rx="3" ry="5" fill="#888">
+      <animate attributeName="cy" values="48;38;28" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.28;0.1;0" dur="2.8s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Extinguished wick -->
+  <rect x="38" y="52" width="4" height="12" fill="#333"/>
+  <ellipse cx="40" cy="51" rx="2" ry="2" fill="#ff3300" opacity="0.12"/>
+
+  <!-- Bottom decorative band -->
+  <rect x="22" y="72" width="36" height="5" rx="1" fill="url(#antiqueGoldDarkOff)"/>
+  <path d="M26 74 Q30 76 34 74 Q38 72 42 74 Q46 76 50 74 Q54 72 54 74" stroke="url(#antiqueGoldLightOff)" stroke-width="1" fill="none"/>
+
+  <!-- Bottom ornate cup/bobeche style -->
+  <ellipse cx="40" cy="78" rx="16" ry="4" fill="url(#antiqueGoldOff)"/>
+  <path d="M24 80 Q24 86 32 88 L48 88 Q56 86 56 80" fill="url(#antiqueGoldDarkOff)"/>
+
+  <!-- Scalloped edge -->
+  <path d="M26 88 Q28 92 32 90 Q36 92 40 90 Q44 92 48 90 Q52 92 54 88" fill="url(#antiqueGoldOff)"/>
+
+  <!-- Bottom scroll arms -->
+  <path d="M28 88 Q22 92 20 98 Q18 102 22 104" stroke="url(#antiqueGoldOff)" stroke-width="2" fill="none"/>
+  <path d="M52 88 Q58 92 60 98 Q62 102 58 104" stroke="url(#antiqueGoldOff)" stroke-width="2" fill="none"/>
+  <circle cx="22" cy="104" r="2.5" fill="none" stroke="url(#antiqueGoldOff)" stroke-width="1.5"/>
+  <circle cx="58" cy="104" r="2.5" fill="none" stroke="url(#antiqueGoldOff)" stroke-width="1.5"/>
+
+  <!-- Crystal drops from bottom (dimmer) -->
+  <path d="M32 92 L32 98 L30 102 L32 108 L34 102 L32 98" fill="url(#crystalGradientOff)" opacity="0.5"/>
+  <path d="M40 94 L40 102 L37 108 L40 116 L43 108 L40 102" fill="url(#crystalGradientOff)" opacity="0.6"/>
+  <path d="M48 92 L48 98 L46 102 L48 108 L50 102 L48 98" fill="url(#crystalGradientOff)" opacity="0.5"/>
+
+  <!-- Crystal teardrops -->
+  <ellipse cx="32" cy="110" rx="2" ry="4" fill="url(#crystalGradientOff)" opacity="0.6"/>
+  <ellipse cx="40" cy="118" rx="3" ry="5" fill="url(#crystalGradientOff)" opacity="0.7"/>
+  <ellipse cx="48" cy="110" rx="2" ry="4" fill="url(#crystalGradientOff)" opacity="0.6"/>
+
+  <!-- Small crystal beads -->
+  <circle cx="22" cy="108" r="2" fill="url(#crystalGradientOff)" opacity="0.5"/>
+  <circle cx="58" cy="108" r="2" fill="url(#crystalGradientOff)" opacity="0.5"/>
+  <circle cx="26" cy="96" r="1.5" fill="url(#crystalGradientOff)" opacity="0.4"/>
+  <circle cx="54" cy="96" r="1.5" fill="url(#crystalGradientOff)" opacity="0.4"/>
+
+  <defs>
+    <linearGradient id="antiqueGoldOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9a8550"/>
+      <stop offset="25%" style="stop-color:#8a7540"/>
+      <stop offset="50%" style="stop-color:#6a5535"/>
+      <stop offset="75%" style="stop-color:#9a8550"/>
+      <stop offset="100%" style="stop-color:#5a4528"/>
+    </linearGradient>
+    <linearGradient id="antiqueGoldDarkOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5a4528"/>
+      <stop offset="50%" style="stop-color:#3a3018"/>
+      <stop offset="100%" style="stop-color:#5a4528"/>
+    </linearGradient>
+    <linearGradient id="antiqueGoldLightOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b8a878"/>
+      <stop offset="50%" style="stop-color:#c8b888"/>
+      <stop offset="100%" style="stop-color:#b8a878"/>
+    </linearGradient>
+    <linearGradient id="coldGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5a6070"/>
+      <stop offset="50%" style="stop-color:#4a5060"/>
+      <stop offset="100%" style="stop-color:#3a4050"/>
+    </linearGradient>
+    <linearGradient id="crystalGradientOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a0a0a8"/>
+      <stop offset="30%" style="stop-color:#909098"/>
+      <stop offset="50%" style="stop-color:#808088"/>
+      <stop offset="70%" style="stop-color:#909098"/>
+      <stop offset="100%" style="stop-color:#a0a0a8"/>
+    </linearGradient>
+  </defs>
+</svg>

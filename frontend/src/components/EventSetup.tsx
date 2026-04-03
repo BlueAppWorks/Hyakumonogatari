@@ -35,6 +35,7 @@ export function EventSetup() {
       iconImageUrl: null,
       backgroundImageUrl: null,
       titleColor: '#ff9500',
+      candleStyle: 'simple',
     }
 
     // Save to localStorage

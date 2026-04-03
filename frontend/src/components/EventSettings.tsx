@@ -17,8 +17,21 @@ import {
   SegmentedControl,
   ColorSwatch,
 } from '@mantine/core'
-import type { EventConfig } from '../types'
-import { EVENT_ICONS, TITLE_COLORS } from '../types'
+import type { EventConfig, CandleStyle } from '../types'
+import { EVENT_ICONS, TITLE_COLORS, CANDLE_STYLES } from '../types'
+
+// Import candle preview images
+import candleLit from '../assets/candle-lit.svg'
+import candleFancyLit from '../assets/candle-fancy-lit.svg'
+import lanternLit from '../assets/lantern-lit.svg'
+import andonLit from '../assets/andon-lit.svg'
+
+const CANDLE_PREVIEWS: Record<CandleStyle, string> = {
+  simple: candleLit,
+  fancy: candleFancyLit,
+  lantern: lanternLit,
+  andon: andonLit,
+}
 
 interface EventSettingsProps {
   isOpen: boolean
@@ -41,6 +54,7 @@ export function EventSettings({
   const [timeLimit, setTimeLimit] = useState(event.timeLimitSeconds / 60)
   const [mode, setMode] = useState(event.mode)
   const [titleColor, setTitleColor] = useState(event.titleColor || '#ff9500')
+  const [candleStyle, setCandleStyle] = useState<CandleStyle>(event.candleStyle || 'simple')
 
   // Appearance settings
   const [iconEmoji, setIconEmoji] = useState(event.iconEmoji)
@@ -83,6 +97,7 @@ export function EventSettings({
       timeLimitSeconds: (timeLimit || 2) * 60,
       mode,
       titleColor,
+      candleStyle,
       iconEmoji,
       iconImageUrl,
       backgroundImageUrl,
@@ -141,7 +156,8 @@ export function EventSettings({
 
               <Tabs value={activeTab} onChange={setActiveTab}>
                 <Tabs.List grow mb="lg">
-                  <Tabs.Tab value="basic">基本設定</Tabs.Tab>
+                  <Tabs.Tab value="basic">基本</Tabs.Tab>
+                  <Tabs.Tab value="candle">ろうそく</Tabs.Tab>
                   <Tabs.Tab value="icon">アイコン</Tabs.Tab>
                   <Tabs.Tab value="background">背景</Tabs.Tab>
                 </Tabs.List>
@@ -230,6 +246,52 @@ export function EventSettings({
                         選択中: <span style={{ color: titleColor }}>{name || '百物語'}</span>
                       </Text>
                     </div>
+                  </Stack>
+                </Tabs.Panel>
+
+                {/* Candle Style Tab */}
+                <Tabs.Panel value="candle">
+                  <Stack gap="md">
+                    <Text size="sm" c="dimmed">ろうそくのスタイルを選択</Text>
+
+                    <SimpleGrid cols={2} spacing="md">
+                      {CANDLE_STYLES.map((style) => (
+                        <Paper
+                          key={style.id}
+                          p="md"
+                          radius="md"
+                          onClick={() => setCandleStyle(style.id)}
+                          style={{
+                            background: candleStyle === style.id
+                              ? 'rgba(255, 149, 0, 0.2)'
+                              : 'rgba(0, 0, 0, 0.3)',
+                            border: candleStyle === style.id
+                              ? '2px solid #ff9500'
+                              : '2px solid transparent',
+                            cursor: 'pointer',
+                            textAlign: 'center',
+                            transition: 'all 0.2s',
+                          }}
+                        >
+                          <img
+                            src={CANDLE_PREVIEWS[style.id]}
+                            alt={style.name}
+                            style={{
+                              width: '60px',
+                              height: '80px',
+                              objectFit: 'contain',
+                              filter: 'drop-shadow(0 0 8px rgba(255, 149, 0, 0.6))',
+                            }}
+                          />
+                          <Text size="sm" c="white" fw={500} mt="xs">
+                            {style.name}
+                          </Text>
+                          <Text size="xs" c="dimmed">
+                            {style.description}
+                          </Text>
+                        </Paper>
+                      ))}
+                    </SimpleGrid>
                   </Stack>
                 </Tabs.Panel>
 

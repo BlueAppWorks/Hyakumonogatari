@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 130">
+  <!-- Inner glow -->
+  <ellipse cx="40" cy="55" rx="20" ry="25" fill="url(#chandelierGlow)" opacity="0.7"/>
+
+  <!-- Top hook with ornate scroll -->
+  <path d="M40 2 Q40 -2 44 -2 Q50 -2 50 4 Q50 10 44 10 L44 14" stroke="url(#antiqueGold)" stroke-width="2.5" fill="none"/>
+  <circle cx="40" cy="2" r="2" fill="url(#antiqueGoldLight)"/>
+
+  <!-- Crown top with acanthus leaf style -->
+  <path d="M30 16 Q28 12 32 10 Q36 8 40 6 Q44 8 48 10 Q52 12 50 16" fill="url(#antiqueGold)"/>
+  <path d="M32 14 Q36 10 40 8 Q44 10 48 14" fill="url(#antiqueGoldLight)" opacity="0.6"/>
+
+  <!-- Decorative fleur-de-lis top -->
+  <path d="M37 10 Q40 4 43 10 M40 6 L40 14" stroke="url(#antiqueGoldLight)" stroke-width="1.5" fill="none"/>
+
+  <!-- Upper decorative collar with scalloped edge -->
+  <ellipse cx="40" cy="18" rx="14" ry="4" fill="url(#antiqueGold)"/>
+  <path d="M26 20 Q28 24 32 22 Q36 24 40 22 Q44 24 48 22 Q52 24 54 20" fill="url(#antiqueGoldDark)"/>
+
+  <!-- Ornate scroll arms extending from top -->
+  <path d="M26 22 Q18 26 16 34 Q14 38 18 40" stroke="url(#antiqueGold)" stroke-width="2" fill="none"/>
+  <path d="M54 22 Q62 26 64 34 Q66 38 62 40" stroke="url(#antiqueGold)" stroke-width="2" fill="none"/>
+
+  <!-- Scroll curls -->
+  <circle cx="17" cy="40" r="3" fill="none" stroke="url(#antiqueGold)" stroke-width="1.5"/>
+  <circle cx="63" cy="40" r="3" fill="none" stroke="url(#antiqueGold)" stroke-width="1.5"/>
+
+  <!-- Crystal drops from scrolls -->
+  <path d="M17 44 L17 50 L15 54 L17 58 L19 54 L17 50" fill="url(#crystalGradient)" opacity="0.8"/>
+  <path d="M63 44 L63 50 L61 54 L63 58 L65 54 L63 50" fill="url(#crystalGradient)" opacity="0.8"/>
+  <ellipse cx="17" cy="59" rx="2" ry="3" fill="url(#crystalGradient)" opacity="0.9"/>
+  <ellipse cx="63" cy="59" rx="2" ry="3" fill="url(#crystalGradient)" opacity="0.9"/>
+
+  <!-- Main glass body frame -->
+  <rect x="24" y="24" width="32" height="50" rx="3" fill="url(#warmGlassGlow)" opacity="0.9"/>
+
+  <!-- Acanthus leaf pattern on frame sides -->
+  <path d="M24 30 Q20 35 22 42 Q20 48 24 54" stroke="url(#antiqueGold)" stroke-width="2.5" fill="none"/>
+  <path d="M56 30 Q60 35 58 42 Q60 48 56 54" stroke="url(#antiqueGold)" stroke-width="2.5" fill="none"/>
+
+  <!-- Leaf details -->
+  <path d="M22 36 Q24 38 22 40" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+  <path d="M22 46 Q24 48 22 50" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+  <path d="M58 36 Q56 38 58 40" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+  <path d="M58 46 Q56 48 58 50" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+
+  <!-- Glass panel highlights -->
+  <rect x="26" y="28" width="6" height="42" rx="1" fill="rgba(255,255,255,0.2)"/>
+
+  <!-- Decorative middle band with rococo style -->
+  <rect x="22" y="46" width="36" height="5" rx="1" fill="url(#antiqueGoldDark)"/>
+  <path d="M26 48 Q30 46 34 48 Q38 50 42 48 Q46 46 50 48 Q54 50 54 48" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+
+  <!-- Flame with warm glow -->
+  <ellipse cx="40" cy="52" rx="8" ry="4" fill="#ff8844" opacity="0.4"/>
+  <path d="M40 32 Q50 42 45 52 Q50 60 40 70 Q30 60 35 52 Q30 42 40 32" fill="url(#flameGradient)">
+    <animate attributeName="d"
+      values="M40 32 Q50 42 45 52 Q50 60 40 70 Q30 60 35 52 Q30 42 40 32;
+              M40 30 Q52 41 46 51 Q52 61 40 72 Q28 61 34 51 Q28 41 40 30;
+              M40 32 Q50 42 45 52 Q50 60 40 70 Q30 60 35 52 Q30 42 40 32"
+      dur="0.5s" repeatCount="indefinite"/>
+  </path>
+  <!-- Inner flame core -->
+  <path d="M40 42 Q45 48 43 54 Q46 58 40 64 Q34 58 37 54 Q35 48 40 42" fill="#fff8dc">
+    <animate attributeName="d"
+      values="M40 42 Q45 48 43 54 Q46 58 40 64 Q34 58 37 54 Q35 48 40 42;
+              M40 40 Q46 47 44 53 Q48 59 40 66 Q32 59 36 53 Q34 47 40 40;
+              M40 42 Q45 48 43 54 Q46 58 40 64 Q34 58 37 54 Q35 48 40 42"
+      dur="0.5s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Bottom decorative band -->
+  <rect x="22" y="72" width="36" height="5" rx="1" fill="url(#antiqueGoldDark)"/>
+  <path d="M26 74 Q30 76 34 74 Q38 72 42 74 Q46 76 50 74 Q54 72 54 74" stroke="url(#antiqueGoldLight)" stroke-width="1" fill="none"/>
+
+  <!-- Bottom ornate cup/bobeche style -->
+  <ellipse cx="40" cy="78" rx="16" ry="4" fill="url(#antiqueGold)"/>
+  <path d="M24 80 Q24 86 32 88 L48 88 Q56 86 56 80" fill="url(#antiqueGoldDark)"/>
+
+  <!-- Scalloped edge -->
+  <path d="M26 88 Q28 92 32 90 Q36 92 40 90 Q44 92 48 90 Q52 92 54 88" fill="url(#antiqueGold)"/>
+
+  <!-- Bottom scroll arms -->
+  <path d="M28 88 Q22 92 20 98 Q18 102 22 104" stroke="url(#antiqueGold)" stroke-width="2" fill="none"/>
+  <path d="M52 88 Q58 92 60 98 Q62 102 58 104" stroke="url(#antiqueGold)" stroke-width="2" fill="none"/>
+  <circle cx="22" cy="104" r="2.5" fill="none" stroke="url(#antiqueGold)" stroke-width="1.5"/>
+  <circle cx="58" cy="104" r="2.5" fill="none" stroke="url(#antiqueGold)" stroke-width="1.5"/>
+
+  <!-- Crystal drops from bottom -->
+  <path d="M32 92 L32 98 L30 102 L32 108 L34 102 L32 98" fill="url(#crystalGradient)" opacity="0.85"/>
+  <path d="M40 94 L40 102 L37 108 L40 116 L43 108 L40 102" fill="url(#crystalGradient)" opacity="0.9"/>
+  <path d="M48 92 L48 98 L46 102 L48 108 L50 102 L48 98" fill="url(#crystalGradient)" opacity="0.85"/>
+
+  <!-- Crystal teardrops -->
+  <ellipse cx="32" cy="110" rx="2" ry="4" fill="url(#crystalGradient)"/>
+  <ellipse cx="40" cy="118" rx="3" ry="5" fill="url(#crystalGradient)"/>
+  <ellipse cx="48" cy="110" rx="2" ry="4" fill="url(#crystalGradient)"/>
+
+  <!-- Small crystal beads -->
+  <circle cx="22" cy="108" r="2" fill="url(#crystalGradient)" opacity="0.8"/>
+  <circle cx="58" cy="108" r="2" fill="url(#crystalGradient)" opacity="0.8"/>
+  <circle cx="26" cy="96" r="1.5" fill="url(#crystalGradient)" opacity="0.7"/>
+  <circle cx="54" cy="96" r="1.5" fill="url(#crystalGradient)" opacity="0.7"/>
+
+  <defs>
+    <linearGradient id="antiqueGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a84b"/>
+      <stop offset="25%" style="stop-color:#c9a227"/>
+      <stop offset="50%" style="stop-color:#8b7335"/>
+      <stop offset="75%" style="stop-color:#d4a84b"/>
+      <stop offset="100%" style="stop-color:#6b5a2a"/>
+    </linearGradient>
+    <linearGradient id="antiqueGoldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6b5a2a"/>
+      <stop offset="50%" style="stop-color:#4a3d1a"/>
+      <stop offset="100%" style="stop-color:#6b5a2a"/>
+    </linearGradient>
+    <linearGradient id="antiqueGoldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0d890"/>
+      <stop offset="50%" style="stop-color:#ffe4a0"/>
+      <stop offset="100%" style="stop-color:#f0d890"/>
+    </linearGradient>
+    <radialGradient id="chandelierGlow">
+      <stop offset="0%" style="stop-color:#ffcc66;stop-opacity:1"/>
+      <stop offset="50%" style="stop-color:#ff9933;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ff6600;stop-opacity:0"/>
+    </radialGradient>
+    <linearGradient id="warmGlassGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff0d0"/>
+      <stop offset="30%" style="stop-color:#ffdd88"/>
+      <stop offset="70%" style="stop-color:#ffaa44"/>
+      <stop offset="100%" style="stop-color:#cc7722"/>
+    </linearGradient>
+    <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="40%" style="stop-color:#ff8c00"/>
+      <stop offset="100%" style="stop-color:#ffdd44"/>
+    </linearGradient>
+    <linearGradient id="crystalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="30%" style="stop-color:#e8e8f0"/>
+      <stop offset="50%" style="stop-color:#c0c8d8"/>
+      <stop offset="70%" style="stop-color:#e8e8f0"/>
+      <stop offset="100%" style="stop-color:#ffffff"/>
+    </linearGradient>
+  </defs>
+</svg>

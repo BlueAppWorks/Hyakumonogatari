@@ -11,7 +11,19 @@ export interface EventConfig {
   iconImageUrl: string | null // Custom icon image (Base64 or URL)
   backgroundImageUrl: string | null // Custom background image (Base64 or URL)
   titleColor: string // Title text color
+  candleStyle: CandleStyle // Candle visual style
 }
+
+// Candle style types
+export type CandleStyle = 'simple' | 'fancy' | 'lantern' | 'andon'
+
+// Candle style options
+export const CANDLE_STYLES: { id: CandleStyle; name: string; description: string }[] = [
+  { id: 'simple', name: 'シンプル', description: 'シンプルなろうそく' },
+  { id: 'fancy', name: '燭台付き', description: '豪華な燭台付きろうそく' },
+  { id: 'lantern', name: 'ランタン', description: '西洋風のランタン' },
+  { id: 'andon', name: '行灯', description: '和風の行灯' },
+]
 
 // Participant
 export interface Participant {

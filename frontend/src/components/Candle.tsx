@@ -1,18 +1,44 @@
 import { motion, AnimatePresence } from 'framer-motion'
+import type { CandleStyle } from '../types'
+
+// Simple candles
 import candleLit from '../assets/candle-lit.svg'
 import candleOff from '../assets/candle-off.svg'
+
+// Fancy candles with candlestick
+import candleFancyLit from '../assets/candle-fancy-lit.svg'
+import candleFancyOff from '../assets/candle-fancy-off.svg'
+
+// Lantern
+import lanternLit from '../assets/lantern-lit.svg'
+import lanternOff from '../assets/lantern-off.svg'
+
+// Andon (Japanese paper lantern)
+import andonLit from '../assets/andon-lit.svg'
+import andonOff from '../assets/andon-off.svg'
+
+const CANDLE_IMAGES: Record<CandleStyle, { lit: string; off: string }> = {
+  simple: { lit: candleLit, off: candleOff },
+  fancy: { lit: candleFancyLit, off: candleFancyOff },
+  lantern: { lit: lanternLit, off: lanternOff },
+  andon: { lit: andonLit, off: andonOff },
+}
 
 interface CandleProps {
   slotNumber: number
   isCompleted: boolean
   isDarkMode: boolean
+  candleStyle: CandleStyle
   onClick: () => void
 }
 
-export function Candle({ slotNumber, isCompleted, isDarkMode, onClick }: CandleProps) {
+export function Candle({ slotNumber, isCompleted, isDarkMode, candleStyle, onClick }: CandleProps) {
   // In Dark mode: completed = extinguished (off)
   // In Bright mode: completed = lit (on)
   const isLit = isDarkMode ? !isCompleted : isCompleted
+
+  const images = CANDLE_IMAGES[candleStyle] || CANDLE_IMAGES.simple
+  const imageSrc = isLit ? images.lit : images.off
 
   return (
     <motion.div
@@ -33,9 +59,9 @@ export function Candle({ slotNumber, isCompleted, isDarkMode, onClick }: CandleP
     >
       <AnimatePresence mode="wait">
         <motion.img
-          key={isLit ? 'lit' : 'off'}
-          src={isLit ? candleLit : candleOff}
-          alt={isLit ? 'lit candle' : 'extinguished candle'}
+          key={`${candleStyle}-${isLit ? 'lit' : 'off'}`}
+          src={imageSrc}
+          alt={isLit ? 'lit' : 'extinguished'}
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{
             opacity: 1,

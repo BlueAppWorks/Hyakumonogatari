@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <!-- Flame glow -->
+  <ellipse cx="40" cy="18" rx="18" ry="22" fill="url(#fancyGlowGradient)" opacity="0.6"/>
+
+  <!-- Outer flame -->
+  <path d="M40 3 Q52 15 46 28 Q50 35 40 42 Q30 35 34 28 Q28 15 40 3" fill="url(#fancyFlameGradient)">
+    <animate attributeName="d"
+      values="M40 3 Q52 15 46 28 Q50 35 40 42 Q30 35 34 28 Q28 15 40 3;
+              M40 1 Q54 14 47 27 Q52 36 40 44 Q28 36 33 27 Q26 14 40 1;
+              M40 3 Q52 15 46 28 Q50 35 40 42 Q30 35 34 28 Q28 15 40 3"
+      dur="0.6s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Inner flame -->
+  <path d="M40 15 Q46 22 43 30 Q45 35 40 38 Q35 35 37 30 Q34 22 40 15" fill="#fffacd">
+    <animate attributeName="d"
+      values="M40 15 Q46 22 43 30 Q45 35 40 38 Q35 35 37 30 Q34 22 40 15;
+              M40 13 Q47 21 44 29 Q47 36 40 40 Q33 36 36 29 Q33 21 40 13;
+              M40 15 Q46 22 43 30 Q45 35 40 38 Q35 35 37 30 Q34 22 40 15"
+      dur="0.6s" repeatCount="indefinite"/>
+  </path>
+
+  <!-- Wick -->
+  <rect x="38" y="38" width="4" height="8" fill="#333"/>
+
+  <!-- Candle body with ornate design -->
+  <rect x="30" y="46" width="20" height="32" rx="2" fill="url(#fancyCandleGradient)"/>
+
+  <!-- Candle decorative rings -->
+  <rect x="28" y="46" width="24" height="3" rx="1" fill="#d4af37"/>
+  <rect x="28" y="74" width="24" height="3" rx="1" fill="#d4af37"/>
+
+  <!-- Candle vertical ornament -->
+  <rect x="38" y="49" width="4" height="25" rx="1" fill="rgba(255,255,255,0.2)"/>
+
+  <!-- Dripping wax -->
+  <ellipse cx="33" y="52" rx="3" ry="6" fill="#f5e6d3"/>
+  <ellipse cx="47" cy="58" rx="2" ry="5" fill="#f5e6d3"/>
+
+  <!-- Candlestick holder - top dish -->
+  <ellipse cx="40" cy="78" rx="22" ry="5" fill="url(#goldGradient)"/>
+  <ellipse cx="40" cy="77" rx="18" ry="4" fill="url(#goldDarkGradient)"/>
+
+  <!-- Candlestick stem -->
+  <path d="M35 82 Q32 88 34 94 Q32 100 36 104 L44 104 Q48 100 46 94 Q48 88 45 82 Z" fill="url(#goldGradient)"/>
+
+  <!-- Stem ornamental bulge -->
+  <ellipse cx="40" cy="93" rx="8" ry="4" fill="url(#goldGradient)"/>
+
+  <!-- Candlestick base -->
+  <ellipse cx="40" cy="104" rx="12" ry="3" fill="url(#goldGradient)"/>
+  <ellipse cx="40" cy="107" rx="18" ry="5" fill="url(#goldGradient)"/>
+  <ellipse cx="40" cy="112" rx="22" ry="6" fill="url(#goldGradient)"/>
+
+  <!-- Base shadow/detail -->
+  <ellipse cx="40" cy="114" rx="20" ry="4" fill="url(#goldDarkGradient)" opacity="0.5"/>
+
+  <!-- Highlight on holder -->
+  <ellipse cx="34" cy="110" rx="4" ry="2" fill="rgba(255,255,255,0.3)"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="fancyFlameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff4500"/>
+      <stop offset="40%" style="stop-color:#ff8c00"/>
+      <stop offset="100%" style="stop-color:#ffd700"/>
+    </linearGradient>
+    <radialGradient id="fancyGlowGradient">
+      <stop offset="0%" style="stop-color:#ffa500;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ffa500;stop-opacity:0"/>
+    </radialGradient>
+    <linearGradient id="fancyCandleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fff8dc"/>
+      <stop offset="30%" style="stop-color:#fffff0"/>
+      <stop offset="70%" style="stop-color:#fffff0"/>
+      <stop offset="100%" style="stop-color:#f5e6d3"/>
+    </linearGradient>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffd700"/>
+      <stop offset="25%" style="stop-color:#ffec8b"/>
+      <stop offset="50%" style="stop-color:#daa520"/>
+      <stop offset="75%" style="stop-color:#ffd700"/>
+      <stop offset="100%" style="stop-color:#b8860b"/>
+    </linearGradient>
+    <linearGradient id="goldDarkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b8860b"/>
+      <stop offset="50%" style="stop-color:#8b6914"/>
+      <stop offset="100%" style="stop-color:#b8860b"/>
+    </linearGradient>
+  </defs>
+</svg>

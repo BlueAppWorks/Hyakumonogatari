@@ -235,6 +235,7 @@ export function MainScreen({
               candleCount={event.candleCount}
               completedSlots={completedSlots}
               isDarkMode={event.mode === 'dark'}
+              candleStyle={event.candleStyle || 'simple'}
               onCandleClick={handleCandleClick}
             />
 

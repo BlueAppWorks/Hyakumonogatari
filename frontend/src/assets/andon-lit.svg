@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 110">
+  <!-- Ambient glow behind -->
+  <ellipse cx="35" cy="50" rx="28" ry="35" fill="url(#andonAmbient)" opacity="0.5"/>
+
+  <!-- Paper shade - trapezoidal shape with warm eerie glow -->
+  <path d="M18 20 L12 80 L58 80 L52 20 Z" fill="url(#andonPaperGlow)"/>
+
+  <!-- Inner glow gradient overlay -->
+  <path d="M18 20 L12 80 L58 80 L52 20 Z" fill="url(#andonInnerGlow)" opacity="0.6"/>
+
+  <!-- Subtle paper texture - faint vertical lines -->
+  <line x1="22" y1="22" x2="16" y2="78" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+  <line x1="30" y1="21" x2="26" y2="79" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+  <line x1="40" y1="21" x2="44" y2="79" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+  <line x1="48" y1="22" x2="54" y2="78" stroke="rgba(0,0,0,0.03)" stroke-width="0.5"/>
+
+  <!-- Black wooden frame - top -->
+  <path d="M16 18 L54 18 L52 22 L18 22 Z" fill="url(#darkWood)"/>
+  <line x1="16" y1="18" x2="54" y2="18" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Black wooden frame - bottom -->
+  <path d="M10 78 L60 78 L58 82 L12 82 Z" fill="url(#darkWood)"/>
+  <line x1="10" y1="82" x2="60" y2="82" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Frame corners/edges - left -->
+  <path d="M16 18 L18 22 L12 82 L10 78 Z" fill="url(#darkWood)" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Frame corners/edges - right -->
+  <path d="M54 18 L52 22 L58 82 L60 78 Z" fill="url(#darkWood)" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Legs - left -->
+  <path d="M14 82 L10 104 L16 104 L18 82" fill="url(#darkWood)" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Legs - right -->
+  <path d="M56 82 L60 104 L54 104 L52 82" fill="url(#darkWood)" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Cross bar between legs -->
+  <rect x="16" y="92" width="38" height="3" rx="0.5" fill="url(#darkWood)" stroke="#1a1a1a" stroke-width="0.5"/>
+
+  <!-- Feet -->
+  <ellipse cx="13" cy="105" rx="4" ry="2" fill="#1a1a1a"/>
+  <ellipse cx="57" cy="105" rx="4" ry="2" fill="#1a1a1a"/>
+
+  <!-- Subtle flame silhouette visible through paper -->
+  <ellipse cx="35" cy="55" rx="8" ry="12" fill="url(#flameShadow)" opacity="0.3">
+    <animate attributeName="rx" values="8;9;7;8" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="ry" values="12;14;11;12" dur="2s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <!-- Flickering light effect -->
+  <ellipse cx="35" cy="50" rx="15" ry="20" fill="url(#flickerGlow)" opacity="0.4">
+    <animate attributeName="opacity" values="0.4;0.5;0.35;0.45;0.4" dur="1.5s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <defs>
+    <!-- Eerie warm paper glow -->
+    <linearGradient id="andonPaperGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4c4a0"/>
+      <stop offset="30%" style="stop-color:#e8d8b8"/>
+      <stop offset="50%" style="stop-color:#f0e0c0"/>
+      <stop offset="70%" style="stop-color:#e8d8b8"/>
+      <stop offset="100%" style="stop-color:#c8b890"/>
+    </linearGradient>
+
+    <!-- Center bright glow -->
+    <radialGradient id="andonInnerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fff0d0;stop-opacity:1"/>
+      <stop offset="40%" style="stop-color:#ffe0a0;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#d0b080;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Ambient glow around lantern -->
+    <radialGradient id="andonAmbient">
+      <stop offset="0%" style="stop-color:#ffdd99;stop-opacity:0.6"/>
+      <stop offset="100%" style="stop-color:#ffdd99;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Dark wood frame -->
+    <linearGradient id="darkWood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a2a2a"/>
+      <stop offset="50%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#2a2a2a"/>
+    </linearGradient>
+
+    <!-- Flame shadow visible through paper -->
+    <radialGradient id="flameShadow">
+      <stop offset="0%" style="stop-color:#ff8844;stop-opacity:0.8"/>
+      <stop offset="60%" style="stop-color:#cc6622;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#884411;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Flickering light -->
+    <radialGradient id="flickerGlow">
+      <stop offset="0%" style="stop-color:#ffeecc;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#ffcc88;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+  <!-- Smoke -->
+  <g opacity="0.4">
+    <ellipse cx="40" cy="12" rx="5" ry="7" fill="#888">
+      <animate attributeName="cy" values="12;2;-8" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0.2;0" dur="2.5s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="35" cy="18" rx="4" ry="6" fill="#888">
+      <animate attributeName="cy" values="18;8;-2" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.15;0" dur="3s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="45" cy="15" rx="3" ry="5" fill="#888">
+      <animate attributeName="cy" values="15;5;-5" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0.15;0" dur="2.8s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Burnt wick -->
+  <path d="M38 38 Q40 34 42 38 L42 46 L38 46 Z" fill="#222"/>
+  <ellipse cx="40" cy="36" rx="3" ry="3" fill="#ff3300" opacity="0.2"/>
+
+  <!-- Candle body (slightly darker/cooler) -->
+  <rect x="30" y="46" width="20" height="32" rx="2" fill="url(#fancyCandleGradientOff)"/>
+
+  <!-- Candle decorative rings (tarnished) -->
+  <rect x="28" y="46" width="24" height="3" rx="1" fill="#a08028"/>
+  <rect x="28" y="74" width="24" height="3" rx="1" fill="#a08028"/>
+
+  <!-- Candle vertical ornament -->
+  <rect x="38" y="49" width="4" height="25" rx="1" fill="rgba(255,255,255,0.1)"/>
+
+  <!-- Dripping wax -->
+  <ellipse cx="33" cy="52" rx="3" ry="6" fill="#e5d6c3"/>
+  <ellipse cx="47" cy="58" rx="2" ry="5" fill="#e5d6c3"/>
+
+  <!-- Candlestick holder - top dish -->
+  <ellipse cx="40" cy="78" rx="22" ry="5" fill="url(#goldGradientOff)"/>
+  <ellipse cx="40" cy="77" rx="18" ry="4" fill="url(#goldDarkGradientOff)"/>
+
+  <!-- Candlestick stem -->
+  <path d="M35 82 Q32 88 34 94 Q32 100 36 104 L44 104 Q48 100 46 94 Q48 88 45 82 Z" fill="url(#goldGradientOff)"/>
+
+  <!-- Stem ornamental bulge -->
+  <ellipse cx="40" cy="93" rx="8" ry="4" fill="url(#goldGradientOff)"/>
+
+  <!-- Candlestick base -->
+  <ellipse cx="40" cy="104" rx="12" ry="3" fill="url(#goldGradientOff)"/>
+  <ellipse cx="40" cy="107" rx="18" ry="5" fill="url(#goldGradientOff)"/>
+  <ellipse cx="40" cy="112" rx="22" ry="6" fill="url(#goldGradientOff)"/>
+
+  <!-- Base shadow/detail -->
+  <ellipse cx="40" cy="114" rx="20" ry="4" fill="url(#goldDarkGradientOff)" opacity="0.5"/>
+
+  <!-- Highlight on holder (dimmer) -->
+  <ellipse cx="34" cy="110" rx="4" ry="2" fill="rgba(255,255,255,0.15)"/>
+
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="fancyCandleGradientOff" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8dcc8"/>
+      <stop offset="30%" style="stop-color:#e5e5d8"/>
+      <stop offset="70%" style="stop-color:#e5e5d8"/>
+      <stop offset="100%" style="stop-color:#d5c6b3"/>
+    </linearGradient>
+    <linearGradient id="goldGradientOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9a227"/>
+      <stop offset="25%" style="stop-color:#d4b56a"/>
+      <stop offset="50%" style="stop-color:#a08020"/>
+      <stop offset="75%" style="stop-color:#c9a227"/>
+      <stop offset="100%" style="stop-color:#8b6914"/>
+    </linearGradient>
+    <linearGradient id="goldDarkGradientOff" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b6914"/>
+      <stop offset="50%" style="stop-color:#6b5010"/>
+      <stop offset="100%" style="stop-color:#8b6914"/>
+    </linearGradient>
+  </defs>
+</svg>

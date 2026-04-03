@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
 import { Candle } from './Candle'
+import type { CandleStyle } from '../types'
 
 interface CandleGridProps {
   candleCount: number
   completedSlots: Set<number>
   isDarkMode: boolean
+  candleStyle: CandleStyle
   onCandleClick: (slotNumber: number) => void
 }
 
@@ -20,6 +22,7 @@ export function CandleGrid({
   candleCount,
   completedSlots,
   isDarkMode,
+  candleStyle,
   onCandleClick,
 }: CandleGridProps) {
   const { cols } = useMemo(() => calculateGridSize(candleCount), [candleCount])
@@ -46,6 +49,7 @@ export function CandleGrid({
           slotNumber={slotNumber}
           isCompleted={completedSlots.has(slotNumber)}
           isDarkMode={isDarkMode}
+          candleStyle={candleStyle}
           onClick={() => onCandleClick(slotNumber)}
         />
       ))}
