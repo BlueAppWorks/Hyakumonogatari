@@ -1,0 +1,35 @@
+manifest_version: 2
+
+version:
+  name: V1
+  label: "Hyakumonogatari v1.0"
+  comment: "Japanese storytelling app with audio recording and AI transcription"
+
+artifacts:
+  setup_script: scripts/setup.sql
+  default_streamlit: app_public.setup_ui
+  container_services:
+    images:
+      - /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260404161135
+
+privileges:
+  - CREATE COMPUTE POOL:
+      description: "Create a compute pool to run application containers."
+  - BIND SERVICE ENDPOINT:
+      description: "Expose public endpoints for user access."
+
+references:
+  - external_access:
+      label: "External Access (PostgreSQL & OpenAI)"
+      description: "External access for PostgreSQL database and OpenAI API."
+      privileges:
+        - USAGE
+      object_type: EXTERNAL ACCESS INTEGRATION
+      required_at_setup: false
+      register_callback: app_setup.register_reference
+      configuration_callback: app_setup.get_eai_configuration
+
+configuration:
+  log_level: INFO
+  trace_level: ALWAYS
+  grant_callback: app_setup.grant_callback

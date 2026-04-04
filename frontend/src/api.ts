@@ -1,4 +1,7 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+// API base URL - uses /api proxy in both dev and prod
+// Dev: vite proxy forwards /api to localhost:8000
+// Prod: nginx proxy forwards /api to backend
+const API_BASE = '/api'
 
 export interface EventConfig {
   id: string

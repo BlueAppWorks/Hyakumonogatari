@@ -9,8 +9,6 @@ import {
   createOrUpdateTalk as createOrUpdateTalkApi,
   resetTalks as resetTalksApi,
   type EventFull,
-  type Participant as ApiParticipant,
-  type Talk as ApiTalk,
 } from '../api'
 import type { EventConfig, Participant, Talk, CandleStyle } from '../types'
 

@@ -1,0 +1,37 @@
+spec:
+  containers:
+  - name: hyakumonogatari
+    image: /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260404161135
+
+    # --- SECRET mount: credentials injected as environment variables ---
+    secrets:
+    - snowflakeSecret: app_config.db_credentials
+      secretKeyRef: username
+      envVarName: DATABASE_USER
+    - snowflakeSecret: app_config.db_credentials
+      secretKeyRef: password
+      envVarName: DATABASE_PASSWORD
+    # OpenAI API key (app-specific)
+    - snowflakeSecret: app_config.openai_credentials
+      secretKeyRef: secret_string
+      envVarName: OPENAI_API_KEY
+
+    # --- Template variables: injected at CREATE SERVICE time via USING clause ---
+    env:
+      DATABASE_HOST: {{DB_HOST}}
+      DATABASE_PORT: {{DB_PORT}}
+      DATABASE_NAME: {{DB_NAME}}
+      COMPUTE_POOL: {{COMPUTE_POOL}}
+
+    resources:
+      requests:
+        cpu: "{{CPU_REQUEST}}"
+        memory: "{{MEMORY_REQUEST}}"
+      limits:
+        cpu: "{{CPU_LIMIT}}"
+        memory: "{{MEMORY_LIMIT}}"
+
+  endpoints:
+  - name: app
+    port: 8080
+    public: true

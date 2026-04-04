@@ -1,0 +1,35 @@
+# Node modules
+frontend/node_modules/
+**/node_modules/
+
+# Python virtual environments
+backend/.venv/
+backend/venv/
+**/__pycache__/
+*.pyc
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+frontend/dist/
+*.egg-info/
+
+# Local development
+backend/.env
+backend/ffmpeg*/
+backend/ffmpeg.zip
+
+# Documentation
+*.md
+!README.md
+
+# Deploy folder (we're building from it)
+deploy/
