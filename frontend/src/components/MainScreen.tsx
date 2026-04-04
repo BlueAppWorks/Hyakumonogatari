@@ -142,6 +142,46 @@ export function MainScreen({
     }
   }, [onReset])
 
+  const handleExportTranscripts = useCallback(() => {
+    // Sort talks by slot number
+    const sortedTalks = [...talks].sort((a, b) => a.slotNumber - b.slotNumber)
+
+    // Build export text
+    const lines: string[] = [
+      `# ${event.name} - 文字起こし`,
+      `エクスポート日時: ${new Date().toLocaleString('ja-JP')}`,
+      `完了: ${completedSlots.size} / ${event.candleCount}`,
+      '',
+      '---',
+      '',
+    ]
+
+    sortedTalks.forEach((talk) => {
+      if (talk.isCompleted && talk.transcript) {
+        const speaker = participants.find((p) => p.id === talk.speakerId)
+        const speakerName = speaker?.nickname || '不明'
+        lines.push(`## ${talk.slotNumber}本目 - ${speakerName}`)
+        lines.push('')
+        lines.push(talk.transcript)
+        lines.push('')
+        lines.push('---')
+        lines.push('')
+      }
+    })
+
+    // Create and download file
+    const content = lines.join('\n')
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${event.name}_transcripts_${new Date().toISOString().slice(0, 10)}.md`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }, [talks, event, participants, completedSlots.size])
+
   // Render event icon
   const renderEventIcon = () => {
     if (event.iconImageUrl) {
@@ -216,6 +256,9 @@ export function MainScreen({
                       alert('URLをコピーしました')
                     }}>
                       🔗 URLをコピー
+                    </Menu.Item>
+                    <Menu.Item onClick={handleExportTranscripts}>
+                      📥 文字起こしエクスポート
                     </Menu.Item>
                     <Menu.Divider />
                     <Menu.Item color="red" onClick={handleReset}>
