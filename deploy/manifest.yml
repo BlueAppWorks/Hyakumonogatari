@@ -10,7 +10,7 @@ artifacts:
   default_streamlit: app_public.setup_ui
   container_services:
     images:
-      - /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260404161135
+      - /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260405040421
 
 privileges:
   - CREATE COMPUTE POOL:
