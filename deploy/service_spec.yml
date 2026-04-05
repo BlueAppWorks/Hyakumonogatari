@@ -1,7 +1,7 @@
 spec:
   containers:
   - name: hyakumonogatari
-    image: /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260405040421
+    image: /HYAKUMONOGATARI_DB/APP_SCHEMA/HYAKUMONOGATARI_REPO/hyakumonogatari:v20260405155150
 
     # --- SECRET mount: credentials injected as environment variables ---
     secrets:
