@@ -8,6 +8,9 @@ CREATE APPLICATION ROLE IF NOT EXISTS app_admin;
 CREATE APPLICATION ROLE IF NOT EXISTS app_user;
 GRANT APPLICATION ROLE app_user TO APPLICATION ROLE app_admin;
 
+-- Allow all users in the consumer account to access endpoints and UI
+GRANT APPLICATION ROLE app_user TO ROLE PUBLIC;
+
 -- ============================================================
 -- Schemas
 -- ============================================================

@@ -265,17 +265,7 @@ BEGIN
         END IF;
     END;
 
-    -- 3. Re-grant service roles (may be lost after upgrade or recreation)
-    BEGIN
-        GRANT USAGE ON SERVICE app_services.hyakumonogatari TO APPLICATION ROLE app_user;
-        GRANT MONITOR ON SERVICE app_services.hyakumonogatari TO APPLICATION ROLE app_user;
-        GRANT SERVICE ROLE app_services.hyakumonogatari!all_endpoints_usage TO APPLICATION ROLE app_admin;
-        GRANT SERVICE ROLE app_services.hyakumonogatari!all_endpoints_usage TO APPLICATION ROLE app_user;
-    EXCEPTION WHEN OTHER THEN
-        NULL;
-    END;
-
-    -- 4. Health check: detect stale image path (after version upgrade)
+    -- 3. Health check: detect stale image path (after version upgrade)
     BEGIN
         SELECT SYSTEM$GET_SERVICE_STATUS(
             'app_services.hyakumonogatari'
