@@ -27,11 +27,12 @@ COPY backend/ ./backend/
 # Copy frontend build
 COPY --from=frontend-build /app/frontend/dist /usr/share/nginx/html
 
-# Nginx config
+# Nginx config - with large body size and extended timeout for audio uploads
 RUN echo 'server { \
     listen 8080; \
     root /usr/share/nginx/html; \
     index index.html; \
+    client_max_body_size 100m; \
     location / { \
         try_files $uri $uri/ /index.html; \
     } \
@@ -40,6 +41,10 @@ RUN echo 'server { \
         proxy_http_version 1.1; \
         proxy_set_header Host $host; \
         proxy_set_header X-Real-IP $remote_addr; \
+        proxy_connect_timeout 300s; \
+        proxy_send_timeout 300s; \
+        proxy_read_timeout 300s; \
+        client_max_body_size 100m; \
     } \
 }' > /etc/nginx/sites-available/default
 
